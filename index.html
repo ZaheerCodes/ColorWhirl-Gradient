@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Whirl</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section id="intro-section">
+            <h1>Gradient Generator</h1>
+            <p>Customize beautiful gradients with Color Whirl</p>
+        </section>
+        <section id="main-section">
+            <section id="panel" class="sub-section">
+                <div id="panel-col-1" class="panel-col">
+                    <div id="type" class="group">
+                        <label for="type">type</label>
+                        <select name="type" id="type-dropdown">
+                            <option value="linear">linear</option>
+                            <option value="radial">radial</option>
+                            <option value="conic">conic</option>
+                            <option value="repeated-linear">repeated linear</option>
+                            <option value="repeated-radial">repeated radial</option>
+                            <option value="repeated-conic">repeated conic</option>
+                        </select>
+                    </div>
+                    <div id="orientation-group" class="group">
+                        <div>
+                            <label for="angle">angle</label>
+                            <input type="number" name="angle" id="angle" value="00">
+                        </div>
+                        <div>
+                            <label for="flip">flip</label>
+                            <button id="flip"></button>
+                        </div>
+                    </div>
+                    <div id="color-picker">
+                        <div id="hex-group" class="group">
+                            <label for="hex">hex</label>
+                            <input type="text" name="hex" id="hex-input" value="000000">
+                        </div>
+                        <fieldset id="rgb-group" class="group">
+                            <legend>rgb</legend>
+                            <label for="red">red</label>
+                            <input type="number" name="red" id="red" value="00">
+                            <label for="green">green</label>
+                            <input type="number" name="green" id="green" value="00">
+                            <label for="blue">blue</label>
+                            <input type="number" name="blue" id="blue" value="00">
+                        </fieldset>
+                        <fieldset id="opacity-group" >
+                            <legend>Opacity</legend>
+                            <label for="opacity-slider">opacity slider</label>
+                            <input type="range" name="opacity-slider" id="opacity-slider">
+                            <label for="opacity-input">opacity-input</label>
+                            <input type="number" name="opacity-input" id="opacity-input">
+                        </fieldset>
+                    </div>
+                </div>
+                <div id="panel-col-2" class="panel-col">
+                    <div id="colors-list">
+                        <h3>colors</h3>
+                        <div class="color">
+                            <span class="color-box"></span>
+                            <label for="position">position:</label>
+                            <input type="number" name="position" value="0" id="position-input">
+                            <button class="randomBtn">R</button>
+                            <button class="deleteBtn">X</button>
+                        </div>
+                        <div class="color">
+                            <span class="color-box"></span>
+                            <label for="position">position:</label>
+                            <input type="number" name="position" value="100" id="position-input">
+                            <button class="randomBtn">R</button>
+                            <button class="deleteBtn">X</button>
+                        </div>
+                    </div>
+                    <button id="add-color-btn">+ add new color</button>
+                </div>
+                <!-- <label for="gradient-slider">
+                    <input type="range" name="gradient-slider" id="opacity-slider">
+                </label> -->
+            </section>
+            <section id="gradient" class="sub-section">
+                <div id="gradient-box"></div>
+                <button id="copy-css-btn">copy css code</button>
+            </section>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
