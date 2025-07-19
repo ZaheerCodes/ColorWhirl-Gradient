@@ -97,7 +97,7 @@ main {
 
     & p {
         width: 20ch;
-        font-size: 0.75rem;
+        font-size: 0.875rem;
         color: var(--gray);
         text-transform: none !important;
         text-align: center;
@@ -258,7 +258,6 @@ fieldset > label,
     & > .color-box {
         height: 2.5rem;
         min-width: 2.5rem;
-        background-color: #5cb270;
         border-radius: 0.5rem;
         border: 1px solid var(--silver);
     }
