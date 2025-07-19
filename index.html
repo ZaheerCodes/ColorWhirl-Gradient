@@ -18,44 +18,49 @@
                     <div id="type" class="group">
                         <label for="type">type</label>
                         <select name="type" id="type-dropdown">
-                            <option value="linear">linear</option>
-                            <option value="radial">radial</option>
-                            <option value="conic">conic</option>
-                            <option value="repeated-linear">repeated linear</option>
-                            <option value="repeated-radial">repeated radial</option>
-                            <option value="repeated-conic">repeated conic</option>
+                            <option value="linear-gradient">linear</option>
+                            <option value="radial-gradient">radial</option>
+                            <option value="conic-gradient">conic</option>
+                            <!-- <option value="repeated-linear">repeated linear</option> -->
+                            <!-- <option value="repeated-radial">repeated radial</option> -->
+                            <!-- <option value="repeated-conic">repeated conic</option> -->
                         </select>
                     </div>
                     <div id="orientation-group" class="group">
                         <div>
+                            <label for="position">position</label>
+                            <input type="number" name="position" value="" id="position-input" min="0" max="100">
+                        </div>
+                        <div>
                             <label for="angle">angle</label>
-                            <input type="number" name="angle" id="angle" value="00">
+                            <input type="number" name="angle" id="angle-input" value="45" min="0" max="360">
                         </div>
                         <div>
                             <label for="flip">flip</label>
-                            <button id="flip"></button>
+                            <button id="flip-btn">F</button>
                         </div>
                     </div>
                     <div id="color-picker">
                         <div id="hex-group" class="group">
                             <label for="hex">hex</label>
-                            <input type="text" name="hex" id="hex-input" value="000000">
+                            <input type="text" name="hex" id="hex-input" value="">
+                            <button class="random-btn">R</button>
                         </div>
                         <fieldset id="rgb-group" class="group">
                             <legend>rgb</legend>
                             <label for="red">red</label>
-                            <input type="number" name="red" id="red" value="00">
+                            <input type="number" name="red" id="red" value="" min="0" max="255">
                             <label for="green">green</label>
-                            <input type="number" name="green" id="green" value="00">
+                            <input type="number" name="green" id="green" value="" min="0" max="255">
                             <label for="blue">blue</label>
-                            <input type="number" name="blue" id="blue" value="00">
+                            <input type="number" name="blue" id="blue" value="" min="0" max="255">
                         </fieldset>
                         <fieldset id="opacity-group" >
                             <legend>Opacity</legend>
                             <label for="opacity-slider">opacity slider</label>
-                            <input type="range" name="opacity-slider" id="opacity-slider">
+                            <input type="range" name="opacity-slider" value="100" id="opacity-slider">
                             <label for="opacity-input">opacity-input</label>
-                            <input type="number" name="opacity-input" id="opacity-input">
+                            <input type="number" name="opacity-input" value="" id="opacity-input" min="0" max="100">
                         </fieldset>
                     </div>
                 </div>
@@ -63,25 +68,25 @@
                     <div id="colors-list">
                         <h3>colors</h3>
                         <div class="color">
-                            <span class="color-box"></span>
+                            <span class="color-box" style="background-color: #f4f269;"></span>
                             <label for="position">position:</label>
-                            <input type="number" name="position" value="0" id="position-input">
-                            <button class="randomBtn">R</button>
-                            <button class="deleteBtn">X</button>
+                            <input type="number" name="position" value="0" class="position" min="0" max="100">
+                            <button class="random-btn">R</button>
+                            <button class="delete-btn">X</button>
                         </div>
                         <div class="color">
                             <span class="color-box"></span>
                             <label for="position">position:</label>
-                            <input type="number" name="position" value="100" id="position-input">
-                            <button class="randomBtn">R</button>
-                            <button class="deleteBtn">X</button>
+                            <input type="number" name="position" value="100" class="position" min="0" max="100">
+                            <button class="random-btn">R</button>
+                            <button class="delete-btn">X</button>
                         </div>
                     </div>
-                    <button id="add-color-btn">+ add new color</button>
+                    <div>
+                        <p>Use random button (R) to generate random values</p>
+                        <button id="add-color-btn">+ add new color</button>
+                    </div>
                 </div>
-                <!-- <label for="gradient-slider">
-                    <input type="range" name="gradient-slider" id="opacity-slider">
-                </label> -->
             </section>
             <section id="gradient" class="sub-section">
                 <div id="gradient-box"></div>

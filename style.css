@@ -23,6 +23,8 @@ main {
     background-color: white;
     height: 100vh;
     width: 100vw;
+    min-width: 950px;
+    padding: 0 2rem;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -68,29 +70,15 @@ main {
     width: 40%;
     
     & > #gradient-box {
-        background: linear-gradient(90deg, hsla(48, 100%, 50%, 1) 0%, hsla(216, 100%, 62%, 1) 100%);
+        border: 1px solid var(--silver);
         height: 100%;
         border-radius: 0.5rem;
     }
 }
 
-#copy-css-btn {
-    width: 100%;
-    padding: 0.75rem 0rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-    background-color: hsl(170, 100%, 30%);
-    border: none;
-    border-radius: 0.5rem;
-    z-index: 10;
-}
-
 #panel {
     width: 60%;
-    padding: 2rem 2rem 2rem 1.5rem;
+    padding: 2rem 1.5rem 2rem 2rem;
     display: flex;
     gap: 2rem;
     border: 1px solid var(--silver);
@@ -102,9 +90,20 @@ main {
 #panel-col-2 {
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     justify-content: space-between;
     padding-left: 1.5rem;
     border-left: 1px solid var(--silver);
+
+    & p {
+        width: 20ch;
+        font-size: 0.75rem;
+        color: var(--gray);
+        text-transform: none !important;
+        text-align: center;
+        justify-self: center;
+        padding-bottom: 1rem;
+    }
 }
 
 #panel * {
@@ -142,7 +141,7 @@ select , input {
 #orientation-group {
     display: flex;
     justify-content: left;
-    gap: 1.5rem;
+    gap: 10%;
 
     & > div {
         display: flex;
@@ -150,22 +149,39 @@ select , input {
     }
 
     & input {
-        width: 4rem;
+        width: 100%;
         text-align: center;
     }
+}
 
-    & button {
-        height: 2.5rem;
-        border: 1px solid var(--silver);
-        border-radius: 0.375rem;
-        background-color: white;
-        width: 3rem;
-    }
+#orientation-group button,
+#color-picker button {
+    height: 2.5rem;
+    border: 1px solid var(--silver);
+    border-radius: 0.375rem;
+    background-color: white;
+    width: 3rem;
 }
 
 #hex-input {
     text-transform: uppercase;
+    padding-left: 0.75rem;
 }
+
+#hex-group {
+    display: flex;
+    gap: 10%;
+    flex-wrap: wrap;
+    
+    & > label {
+        width: 100% !important;
+    }
+
+    & > input {
+        width: calc(90% - 3rem);
+    }
+}
+
 #rgb-group {
     display: flex;
     justify-content: space-between;
@@ -199,25 +215,26 @@ fieldset > label,
     text-align: center;
 }
 
-#colors-list h3 {
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: var(--dark-gray);
-    padding-bottom: 0.125rem;
-    padding-left: 0.5rem;
-}
-
 #colors-list {
     width: 100%;
-    height: 20rem;
+    max-height: 16.25rem;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
 
-    & > label {
+    & label {
         padding-left: 0.5rem;
     }
+
+    & h3 {
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--dark-gray);
+        padding-bottom: 0.125rem;
+        padding-left: 0.5rem;
+    }
+
 }
 
 #colors-list::-webkit-scrollbar {
@@ -231,6 +248,7 @@ fieldset > label,
     align-items: center;
     gap: 0.25rem;
     border-radius: 0.5rem;
+    background-color: white;
 
     & > * {
         height: 2.5rem;
@@ -240,7 +258,7 @@ fieldset > label,
     & > .color-box {
         height: 2.5rem;
         min-width: 2.5rem;
-        background-color: aqua;
+        background-color: #5cb270;
         border-radius: 0.5rem;
         border: 1px solid var(--silver);
     }
@@ -260,53 +278,68 @@ fieldset > label,
     background-color: var(--dim-white);
 }
 
+.color-selected {
+    background-color: rgba(0, 153, 128, 0.1);
+}
+
 #add-color-btn {
-    width: 93%;
+    width: 93.5%;
     height: 2.5rem;
-    margin: 0 auto;
+    margin: 0 0.5rem;
     font-weight: 500;
     color: black;
     background-color: white;
     border: 1px solid var(--silver);
     border-radius: 0.5rem;
     z-index: 10;
+}
+
+#copy-css-btn {
+    width: 100%;
+    height: 3.125rem;
+    margin-top: 2rem;
+    margin-bottom: 2.125rem;
+    /* padding-bottom: 0.125rem; */
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    line-height: 1;
+    color: white;
+    background-color: hsl(170, 100%, 30%);
+    border: 1px solid hsl(170, 100%, 30%);
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+
+#copy-css-btn,
+#add-color-btn,
+#flip-btn,
+.delete-btn,
+.random-btn {
     transition: 0.3s;
 }
 
-#add-color-btn:hover {
-    border: 1px solid hsl(170, 100%, 20%);
-    background-color: rgba(0, 153, 128, 0.1);
+#copy-css-btn:hover {
+    border: 1px solid hsl(170, 100%, 0%);
+    background-color: hsl(170, 100%, 0%);
 }
 
+#add-color-btn:hover,
+#flip-btn:hover,
+.delete-btn:hover,
+.random-btn:hover {
+    border: 1px solid hsl(170, 100%, 20%) !important;
+    background-color: rgba(0, 153, 128, 0.1) !important;
+} 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+label[disabled],
+input[disabled] {
+    /* background-color: #eee; */
+    color: #999 !important;
+}
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
 }
