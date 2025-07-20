@@ -271,8 +271,10 @@ const setOpacity = (value) => {
 const positionInputMatchSelection = (event) => {
     if(selectedColor != null) {
         let value = event.target.value;
-        selectedColor.querySelector(".position").value = value;
-        positionInput.value = value;
+        if(event.target == positionInput)
+            selectedColor.querySelector(".position").value = value;
+        else
+            positionInput.value = value;
     }
 };
 
@@ -331,22 +333,20 @@ const animateOpenFullScreen = () => {
     newBox.style.height = rect.height + "px";
     newBox.style.zIndex = "2";
     newBox.style.border = "none";
-    let scaleX = window.innerWidth / rect.width;
-    let scaleY = window.innerHeight / rect.height;
-    let offsetX = (rect.left - ((rect.width * scaleX) - rect.width) / 2) - 1;
-    let offsetY = (rect.top - ((rect.height * scaleY) - rect.height) / 2) - 1;
-    scaleX += 0.1;
-    scaleY += 0.1;
+    alert(getComputedStyle(gradientBox).getPropertyValue("background"));
     const anim = newBox.animate(
     [
         {
-            transform: `translate(0px, 0px) scale(1,1)`,
-            borderRadius: '0.5rem'
+            transform: `translate(0px, 0px)`,
+            width: rect.width,
+            height: rect.height,
+            borderRadius: '0.5rem',
         },
         {
-            transform: `translate(${0 - offsetX}px, ${0-offsetY}px) 
-            scale(${scaleX}, ${scaleY})`, 
-            borderRadius: '0px'
+            transform: `translate(${0 - rect.left - 1}px, ${0 - rect.top - 1}px)`,
+            width: "101vw",
+            height: "101vh",
+            borderRadius: '0px',
         }
     ],
     {
@@ -356,6 +356,7 @@ const animateOpenFullScreen = () => {
     }
     );
     anim.finished.then(() => {
+        newBox.style.background = getComputedStyle(gradientBox).getPropertyValue("background");
         closeFullScreenBtn.animate(
             [
                 {opacity: "0"},
