@@ -16,6 +16,9 @@ let blueInput = document.querySelector("#blue");
 let flipBtn = document.querySelector("#flip-btn");
 let opacitySlider = document.querySelector("#opacity-slider");
 let opacityInput = document.querySelector("#opacity-input");
+let openFullScreenBtn = document.querySelector("#open-full-screen-btn");
+let closeFullScreenBtn = document.querySelector("#close-full-screen-btn");
+let gradientBox = document.querySelector("#gradient-box");
 let copyCodeBtn = document.querySelector("#copy-css-btn");
 let selectedColor = null;
 
@@ -311,11 +314,90 @@ const updateGradientBox = () => {
             str += `)`;
     }
 
-    document.querySelector("#gradient-box").style.background = str;
+    gradientBox.style.background = str;
     return str;
 };
 
 updateGradientBox();
+
+const animateOpenFullScreen = () => {
+    let rect = gradientBox.getBoundingClientRect();
+    let newBox = gradientBox.cloneNode(true);
+    newBox.classList.remove("gradient-box");
+    newBox.style.position = "fixed";
+    newBox.style.top = "" + rect.top;
+    newBox.style.left = "" + rect.left;
+    newBox.style.width = rect.width + "px";
+    newBox.style.height = rect.height + "px";
+    newBox.style.zIndex = "2";
+    newBox.style.border = "none";
+    let scaleX = window.innerWidth / rect.width;
+    let scaleY = window.innerHeight / rect.height;
+    let offsetX = (rect.left - ((rect.width * scaleX) - rect.width) / 2) - 1;
+    let offsetY = (rect.top - ((rect.height * scaleY) - rect.height) / 2) - 1;
+    scaleX += 0.1;
+    scaleY += 0.1;
+    const anim = newBox.animate(
+    [
+        {
+            transform: `translate(0px, 0px) scale(1,1)`,
+            borderRadius: '0.5rem'
+        },
+        {
+            transform: `translate(${0 - offsetX}px, ${0-offsetY}px) 
+            scale(${scaleX}, ${scaleY})`, 
+            borderRadius: '0px'
+        }
+    ],
+    {
+        duration: 1000,
+        easing: 'ease-in-out',
+        fill: 'forwards'
+    }
+    );
+    anim.finished.then(() => {
+        closeFullScreenBtn.animate(
+            [
+                {opacity: "0"},
+                {opacity: "100"}
+            ],
+            {
+                duration: 100,
+                fill: 'forwards'
+            }
+        );
+    });
+    let parent = gradientBox.parentElement;
+    parent.append(newBox);
+}
+
+const animateCloseFullScreen = () => {
+    closeFullScreenBtn.animate(
+        [
+            {opacity: "100"},
+            {opacity: "0"}
+        ],
+        {
+            duration: 100,
+            fill: 'forwards'
+        }
+    );
+    let fullBox = document.querySelector("#gradient").lastElementChild;
+    const anim = fullBox.animate(
+        [
+            {offset: 0, opacity: 100,},
+            {offset: 1, opacity: 0,}
+        ],
+        {
+            duration: 500,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+        }
+    );
+    anim.finished.then(() => { 
+        document.querySelector("#gradient").removeChild(fullBox);    
+    });
+}
 
 const numInputInRange = (event) => {
     let value = parseInt(event.target.value);
@@ -437,6 +519,10 @@ positionInput.addEventListener("input", updateGradientBox);
 opacityInput.addEventListener("input", numInputInRange);
 opacityInput.addEventListener("change", handleOpacityInput);
 opacitySlider.addEventListener("change", handleOpacityInput);
+
+openFullScreenBtn.addEventListener("click", animateOpenFullScreen);
+closeFullScreenBtn.addEventListener("click", animateCloseFullScreen);
+
 copyCodeBtn.addEventListener("click", copyCode);
 
 window.addEventListener("click", (event) => {

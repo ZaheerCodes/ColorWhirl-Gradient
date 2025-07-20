@@ -290,7 +290,7 @@ fieldset > label,
     background-color: white;
     border: 1px solid var(--silver);
     border-radius: 0.5rem;
-    z-index: 10;
+    z-index: 1;
 }
 
 #copy-css-btn {
@@ -298,7 +298,6 @@ fieldset > label,
     height: 3.125rem;
     margin-top: 2rem;
     margin-bottom: 2.125rem;
-    /* padding-bottom: 0.125rem; */
     font-weight: 600;
     font-size: 1rem;
     text-transform: uppercase;
@@ -307,11 +306,38 @@ fieldset > label,
     background-color: hsl(170, 100%, 30%);
     border: 1px solid hsl(170, 100%, 30%);
     border-radius: 0.5rem;
-    z-index: 10;
+    z-index: 1;
+}
+
+.full-screen-btn {
+    width: 2rem;
+    height: 2rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    border: none;
+    background-color: transparent;
+
+    & i {
+        width: 100%;
+        font-size: 1.5rem;
+        color: #00000080;
+    }
+}
+
+#open-full-screen-btn {
+    position: absolute;
+    z-index: 1;
+}
+
+#close-full-screen-btn {
+    position: fixed;
+    z-index: 3;
+    opacity: 0;
 }
 
 #copy-css-btn,
 #add-color-btn,
+.full-screen-btn,
 #flip-btn,
 .delete-btn,
 .random-btn {
@@ -330,6 +356,12 @@ fieldset > label,
     border: 1px solid hsl(170, 100%, 20%) !important;
     background-color: rgba(0, 153, 128, 0.1) !important;
 } 
+
+.full-screen-btn:hover {
+    & i {
+        color: #000;
+    }
+}
 
 label[disabled],
 input[disabled] {
