@@ -333,7 +333,6 @@ const animateOpenFullScreen = () => {
     newBox.style.height = rect.height + "px";
     newBox.style.zIndex = "2";
     newBox.style.border = "none";
-    alert(getComputedStyle(gradientBox).getPropertyValue("background"));
     const anim = newBox.animate(
     [
         {
